@@ -1,0 +1,16 @@
+* {
+	position: relative;
+}
+#result {
+	position: absolute;
+	top: 220px;
+	left: 250px;
+	z-index: 1;
+}
+#retry {
+	display: none;
+	position: absolute;
+	top: 280px;
+	left: 250px;
+	z-index: 1;
+}
