@@ -1,7 +1,9 @@
 import { Engine, Render, Runner, Bodies, World, Body, Sleeping, Events } from "matter-js";
 import FRUITS from "./fruits";
-const engine = Engine.create();
-// const engine = Engine.create(); 한줄 빈칸
+
+// TODO: Matter.js의 엔진을 생성하세요.
+// engine 상수에 엔진을 생성해 할당하세요.
+
 const render = Render.create({
 	engine,
 	element: document.body,
@@ -13,8 +15,8 @@ const render = Render.create({
 	},
 });
 
-const world = engine.world;
-// const world = engine.world; 한줄 빈칸
+// TODO: 엔진에 월드를 추가하세요.
+// world 상수에 월드를 추가해 할당하세요.
 
 const ground = Bodies.rectangle(310, 700, 620, 60, {
 	isStatic: true,
@@ -41,41 +43,19 @@ const topLine = Bodies.rectangle(310, 120, 620, 2, {
 	label: "topLine",
 });
 
-World.add(world, [ground, leftWall, rightWall, topLine]);
-// World.add(world, [ground, leftWall, rightWall, topLine]);
+// TODO: 위에서 생성한 world에 땅, 왼쪽 벽, 오른쪽 벽, 위쪽 선을 추가하세요.
+World.add(world, [이 곳에 코드를 작성해주세요])
 
 Render.run(render);
-Runner.run(engine);
-// Runner.run(engine);
+
+// TODO: Render.run 함수에 engine을 전달해 호출하세요.
 
 let currentBody = null;
 let currentFruit = null;
 let interval = null;
 let disableAction = false;
 let num_suika = 0;
-let isOver = false
-
-function addCurrentFruit() {
-	const randomFruit = getRandomFruit();
-	// const randomFruit = (); 함수명 빈칸
-
-	const body = Bodies.circle(300, 50, randomFruit.radius, {
-		label: randomFruit.label,
-		isSleeping: true,
-		render: {
-			fillStyle: randomFruit.color,
-			sprite: { texture: `/${randomFruit.label}.png` },
-			//sprite: { texture: `/${}.png` },
-		},
-		restitution: 0.2,
-	});
-
-	currentBody = body;
-	currentFruit = randomFruit;
-
-	World.add(world, body);
-	// World.add(world, body);
-}
+let isOver = false;
 
 function getRandomFruit() {
 	const randomIndex = Math.floor(Math.random() * 5);
@@ -84,6 +64,31 @@ function getRandomFruit() {
 	if (currentFruit && currentFruit.label === fruit.label) return getRandomFruit();
 
 	return fruit;
+}
+
+function addCurrentFruit() {
+	// TODO: randomFruit 상수에 어떤 함수를 호출해야 랜덤한 과일을 가져올 수 있을까요?
+	const randomFruit = 이 곳에 들어갈 함수를 생각해보세요
+
+	const body = Bodies.circle(300, 50, randomFruit.radius, {
+		label: randomFruit.label,
+		isSleeping: true,
+		render: {
+			fillStyle: randomFruit.color,
+
+			// TODO: randomFruit 객체에는 여러가지 정보가 들어있어요.
+			// 그 중에 과일의 이름을 나타내는 label이라는 속성이 있어요.
+			// 이 속성을 이용해서 과일의 이미지를 가져와야 해요.
+			sprite: { texture: `/${이 곳에 코드를 작성해주세요}.png` },
+		},
+		restitution: 0.2,
+	});
+
+	currentBody = body;
+	currentFruit = randomFruit;
+
+	// TODO: world에 body를 추가하세요.
+	World.add(world, [이 곳에 코드를 작성해주세요])
 }
 
 window.onkeydown = (event) => {
@@ -136,7 +141,6 @@ Events.on(engine, "collisionStart", (event) => {
 
 			const index = FRUITS.findIndex((fruit) => fruit.label === collision.bodyA.label);
 
-			// If last fruit, do nothing
 			if (index === FRUITS.length - 1) return;
 
 			const newFruit = FRUITS[index + 1];
@@ -156,10 +160,23 @@ Events.on(engine, "collisionStart", (event) => {
 			alert("Game over");
 			window.location.reload();
 		}
-		if (num_suika == 1 && !isOver) {
-		// if ( && !isOver) {
+
+		// TODO: 게임 승리 조건을 작성하세요.
+		// num_suika에는 수박의 개수가 들어있어요.
+		// 수박이 하나 이상 만들어졌고 isOver 변수가 false일 때 게임을 승리하게 해주세요.
+		if (이 곳에 코드를 작성해주세요) {
 			isOver = true;
 			setTimeout(function () {
+				const windows = Bodies.rectangle(310, 300, 620, 150, {
+					isStatic: true,
+					render: {
+						fillStyle: "#E6B143",
+					},
+				});
+
+				const result = document.getElementById("result");
+				result.innerText = "Victory";
+				World.add(world, [ground, leftWall, rightWall, topLine, windows]);
 				alert("Victory");
 				window.location.reload();
 			}, 100);
