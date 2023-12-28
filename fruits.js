@@ -1,4 +1,4 @@
-export const FRUITS = [
+const FRUITS = [
 	{
 		label: "cherry",
 		radius: 40 / 2,
@@ -45,13 +45,10 @@ export const FRUITS = [
 		color: "#F7E608",
 	},
 	{
-		label: "melon",
-		radius: 270 / 2,
-		color: "#89CE13",
-	},
-	{
 		label: "watermelon",
-		radius: 300 / 2,
+		radius: 270 / 2,
 		color: "#26AA1E",
 	},
 ];
+
+export default FRUITS

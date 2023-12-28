@@ -1,6 +1,7 @@
 import { Engine, Render, Runner, Bodies, World, Body, Sleeping, Events } from "matter-js";
-import { FRUITS } from "./fruits";
+import FRUITS from "./fruits";
 const engine = Engine.create();
+// const engine = Engine.create(); 한줄 빈칸
 const render = Render.create({
 	engine,
 	element: document.body,
@@ -13,6 +14,7 @@ const render = Render.create({
 });
 
 const world = engine.world;
+// const world = engine.world; 한줄 빈칸
 
 const ground = Bodies.rectangle(310, 700, 620, 60, {
 	isStatic: true,
@@ -40,18 +42,22 @@ const topLine = Bodies.rectangle(310, 120, 620, 2, {
 });
 
 World.add(world, [ground, leftWall, rightWall, topLine]);
+// World.add(world, [ground, leftWall, rightWall, topLine]);
 
 Render.run(render);
 Runner.run(engine);
+// Runner.run(engine);
 
 let currentBody = null;
 let currentFruit = null;
 let interval = null;
 let disableAction = false;
 let num_suika = 0;
+let isOver = false
 
 function addCurrentFruit() {
 	const randomFruit = getRandomFruit();
+	// const randomFruit = (); 함수명 빈칸
 
 	const body = Bodies.circle(300, 50, randomFruit.radius, {
 		label: randomFruit.label,
@@ -59,6 +65,7 @@ function addCurrentFruit() {
 		render: {
 			fillStyle: randomFruit.color,
 			sprite: { texture: `/${randomFruit.label}.png` },
+			//sprite: { texture: `/${}.png` },
 		},
 		restitution: 0.2,
 	});
@@ -67,6 +74,7 @@ function addCurrentFruit() {
 	currentFruit = randomFruit;
 
 	World.add(world, body);
+	// World.add(world, body);
 }
 
 function getRandomFruit() {
@@ -144,28 +152,17 @@ Events.on(engine, "collisionStart", (event) => {
 				num_suika++;
 			}
 		}
-		if ((collision.bodyA.label === "topLine" || collision.bodyB.label === "topLine") && !disableAction) {
+		if (!isOver && (collision.bodyA.label === "topLine" || collision.bodyB.label === "topLine") && !disableAction) {
 			alert("Game over");
 			window.location.reload();
 		}
-		if (num_suika == 1) {
+		if (num_suika == 1 && !isOver) {
+		// if ( && !isOver) {
+			isOver = true;
 			setTimeout(function () {
-				const windows = Bodies.rectangle(310, 300, 620, 150, {
-					isStatic: true,
-					render: {
-						fillStyle: "#E6B143",
-					},
-				});
-
-				const result = document.getElementById("result");
-				result.innerText = "Victory";
-				function retry() {
-					retry.style.display = "block";
-				}
-
-				World.add(world, [ground, leftWall, rightWall, topLine, windows]);
+				alert("Victory");
 				window.location.reload();
-			}, 3000);
+			}, 100);
 		}
 	});
 });
