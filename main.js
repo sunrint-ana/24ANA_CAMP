@@ -155,7 +155,7 @@ Events.on(engine, "collisionStart", (event) => {
 				label: newFruit.label,
 			});
 			World.add(world, body);
-			if (newFruit.label == "apple") {
+			if (newFruit.label == "watermelon") {
 				num_suika++;
 			}
 		}
