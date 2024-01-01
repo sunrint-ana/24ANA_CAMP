@@ -75,11 +75,7 @@ function addCurrentFruit() {
 		isSleeping: true,
 		render: {
 			fillStyle: randomFruit.color,
-
-			// TODO: randomFruit 객체에는 여러가지 정보가 들어있어요.
-			// 그 중에 과일의 이름을 나타내는 label이라는 속성이 있어요.
-			// 이 속성을 이용해서 과일의 이미지를 가져와야 해요.
-			sprite: { texture: `/${이 곳에 코드를 작성해주세요}.png` },
+			sprite: { texture: `/${randomFruit.label}.png`},
 		},
 		restitution: 0.2,
 	});
@@ -152,7 +148,7 @@ Events.on(engine, "collisionStart", (event) => {
 				label: newFruit.label,
 			});
 			World.add(world, body);
-			if (newFruit.label == "apple") {
+			if (newFruit.label == "watermelon") {
 				num_suika++;
 			}
 		}
