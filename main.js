@@ -163,16 +163,6 @@ Events.on(engine, "collisionStart", (event) => {
 		if (이 곳에 코드를 작성해주세요) {
 			isOver = true;
 			setTimeout(function () {
-				const windows = Bodies.rectangle(310, 300, 620, 150, {
-					isStatic: true,
-					render: {
-						fillStyle: "#E6B143",
-					},
-				});
-
-				const result = document.getElementById("result");
-				result.innerText = "Victory";
-				World.add(world, [ground, leftWall, rightWall, topLine, windows]);
 				alert("Victory");
 				window.location.reload();
 			}, 100);
